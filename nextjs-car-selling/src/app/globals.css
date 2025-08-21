@@ -120,3 +120,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* jemné zaoblení a cover chování */
+.sanity-gallery.image-gallery .image-gallery-slide img {
+  border-radius: .75rem;
+  object-fit: cover;
+}
+.sanity-gallery .image-gallery-thumbnail-image {
+  border-radius: .5rem;
+  object-fit: cover;
+}

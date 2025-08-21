@@ -6,7 +6,10 @@ npm install tailwind-variants
 npm install clsx
 npm install tailwind-merge
 npm i @remixicon/react
+npm i react-image-gallery
 
 npx shadcn@latest add tooltip
 npx shadcn@latest add button 
 npx shadcn@latest add separator
+npx shadcn@latest add badge
+npx shadcn@latest add table

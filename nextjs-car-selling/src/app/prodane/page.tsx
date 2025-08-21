@@ -7,13 +7,9 @@ import { EquipmentTooltip } from "@/components/EquipmentTooltip"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 
-
-// Dotaz: jen auta Na prodej / Rezervováno, se slugem, seřazené nově
-const CARS_QUERY = `
-*[_type == "car" 
-  && defined(slug.current) 
-  && status in ["available","reserved"]
-]|order(publishedAt desc)[0...12]{
+const SOLD_CARS_QUERY = `
+*[_type == "car" && defined(slug.current) && status == "sold"]
+| order(publishedAt desc)[0...24]{
   _id,
   brand,
   model,
@@ -24,10 +20,7 @@ const CARS_QUERY = `
   fuel,
   drivetrain,
   mainImage,
-  equipmentText,
-  features,
-  status,
-  featured
+  equipmentText
 }
 `
 
@@ -37,25 +30,21 @@ const urlFor = (source: { asset: { _ref: string } }) =>
 
 const options = { next: { revalidate: 30 } }
 
-export default async function IndexPage() {
-  const cars = await client.fetch<SanityDocument[]>(CARS_QUERY, {}, options)
+export default async function SoldPage() {
+  const cars = await client.fetch<SanityDocument[]>(SOLD_CARS_QUERY, {}, options)
 
   return (
     <main className="relative">
-      {/* Kontejner – centrování a horizontální odsazení */}
       <div
         className="mx-auto w-full
-        max-w-[min(90rem,calc(5*16rem+4*1.5rem))]  /* cap: max 5 sloupců (5× karta + 4× gap) */
+        max-w-[min(90rem,calc(5*16rem+4*1.5rem))]
         px-4 sm:px-6 lg:px-8 py-16 pt-24"
       >
         <h1 className="text-3xl md:text-3xl font-bold tracking-tight mb-8">
-          Vozidla na prodej
+          Prodáno
         </h1>
 
-        <ul
-          className="grid gap-6
-          grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]  /* fluidní zalamování */"
-        >
+        <ul className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]">
           {cars.map((car) => {
             const title =
               [car.brand, car.model].filter(Boolean).join(" ") +
@@ -68,33 +57,25 @@ export default async function IndexPage() {
             return (
               <li key={car._id}>
                 <Link href={`/${car.slug.current}`} className="group block">
-                <article className="h-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md">
-                  {/* Obrázek + floating badge */}
-                  <div className="relative">
-                    {carImageUrl && (
-                      <img
-                        src={carImageUrl}
-                        alt={title || "Auto"}
-                        className="aspect-[16/9] w-full rounded-xl object-cover"
-                        width={800}
-                        height={450}
-                      />
-                    )}
-
-                    {/* levý horní roh */}
-                    <div className="pointer-events-none absolute left-3 top-3 flex gap-2">
-                      {car.status === "reserved" && (
-                        <Badge className="rounded-md bg-amber-500 text-white shadow-md">
-                          Rezervováno
-                        </Badge>
+                  <article className="h-full rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md">
+                    {/* Obrázek + floating "Prodáno" */}
+                    <div className="relative">
+                      {carImageUrl && (
+                        <img
+                          src={carImageUrl}
+                          alt={title || "Auto"}
+                          className="aspect-[16/9] w-full rounded-xl object-cover"
+                          width={800}
+                          height={450}
+                        />
                       )}
-                      {car.featured && (
-                        <Badge className="rounded-md bg-violet-600 text-white shadow-md">
-                          Top nabídka
-                        </Badge>
-                      )}
+                      <Badge
+                        variant="destructive"
+                        className="pointer-events-none absolute left-3 top-3 rounded-md px-2.5 py-1 text-xs font-semibold tracking-wide shadow-md"
+                      >
+                        Prodáno
+                      </Badge>
                     </div>
-                  </div>
 
                     {/* Textová část */}
                     <div className="mt-4">
@@ -102,7 +83,6 @@ export default async function IndexPage() {
                         {title || "Auto bez názvu"}
                       </h2>
 
-                      {/* Krátký popisek v tooltipu */}
                       <EquipmentTooltip
                         text={
                           car.equipmentText ??
@@ -110,7 +90,6 @@ export default async function IndexPage() {
                         }
                       />
 
-                      {/* Štítky (palivo, náhon, nájezd, rok) */}
                       <div className="mt-2 flex flex-wrap items-center gap-2">
                         {car.fuel && (
                           <span className="rounded-md bg-gray-900 px-2 py-1 text-xs font-medium text-white">
@@ -136,13 +115,10 @@ export default async function IndexPage() {
 
                       <Separator className="mt-6" />
 
-                      {/* Cena vlevo / částka vpravo */}
                       {car.price != null ? (
                         <div className="mt-3 text-base flex items-baseline justify-between">
                           <span>Cena</span>
-                          <span className="whitespace-nowrap font-semibold">
-                            {car.price} Kč
-                          </span>
+                          <span className="whitespace-nowrap font-semibold">{car.price} Kč</span>
                         </div>
                       ) : (
                         <p className="mt-3 text-base font-semibold">Cena není uvedena</p>
