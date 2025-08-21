@@ -56,10 +56,10 @@ export const carType = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Benzín', value: 'benzine' },
-          { title: 'Nafta', value: 'diesel' },
-          { title: 'Elektrický', value: 'electric' },
-          { title: 'Hybridní', value: 'hybrid' },
+          { title: 'Benzín', value: 'Benzín' },
+          { title: 'Nafta', value: 'Nafta' },
+          { title: 'Elektrický', value: 'Electric' },
+          { title: 'Hybridní', value: 'Hybrid' },
         ],
       },
     }),
