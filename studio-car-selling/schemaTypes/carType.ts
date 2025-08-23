@@ -121,6 +121,7 @@ export const carType = defineType({
       type: "array",
       of: [{ type: "string" }],
       options: { layout: "tags" },
+      description: "Napiš jednu výbavu (např.: 4x4) a klikni na enter. Potom napiš další a zopakuj",
     }),
     defineField({
       name: "equipmentText",

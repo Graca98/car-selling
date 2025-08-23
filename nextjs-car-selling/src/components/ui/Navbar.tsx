@@ -16,19 +16,15 @@ const links = {
   },
   sold: {
     name: "Prodaná",
-    link: "/prodane",
-  },
-  about: {
-    name: "O nás",
-    link: "#about",
+    link: "/sold",
   },
   contact: {
     name: "Kontakt",
-    link: "#contact",
+    link: "/contact",
   },
   order: {
     name: "Objednat dovoz",
-    link: "#order",
+    link: "/order-car",
   },
 }
 
@@ -61,16 +57,15 @@ export function NavBar() {
             <Link className="px-2 py-1 text-gray-900" href={links.sold.link}>
               {links.sold.name}
             </Link>
-            <Link className="px-2 py-1 text-gray-900" href={links.about.link}>
-              {links.about.name}
-            </Link>
             <Link className="px-2 py-1 text-gray-900" href={links.contact.link}>
               {links.contact.name}
             </Link>
             </div>
           </nav>
           <Button variant="secondary" className="hidden h-10 font-semibold sm:block">
-            {links.order.name}
+            <Link className="px-2 py-1 text-gray-900" href={links.order.link}>
+              {links.order.name}
+            </Link>
           </Button>
 
           <Button
@@ -104,9 +99,6 @@ export function NavBar() {
           </li>
           <li onClick={() => setOpen(false)}>
             <Link href={links.sold.link}>{links.sold.name}</Link>
-          </li>
-          <li onClick={() => setOpen(false)}>
-            <Link href={links.about.link}>{links.about.name}</Link>
           </li>
           <li onClick={() => setOpen(false)}>
             <Link href={links.contact.link}>{links.contact.name}</Link>
