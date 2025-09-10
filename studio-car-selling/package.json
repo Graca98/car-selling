@@ -9,13 +9,15 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
+    "deploy-graphql": "sanity graphql deploy",
+    "seed:cars": "node scripts/seed-cars.mjs"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
     "@sanity/vision": "^4.5.0",
+    "dotenv": "^17.2.1",
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^4.5.0",
