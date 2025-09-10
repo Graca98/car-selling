@@ -20,3 +20,6 @@ npx shadcn@latest add badge
 npx shadcn@latest add table
 npx shadcn@latest add form input textarea
 npx shadcn@latest add sonner
+npx shadcn@latest add select
+npx shadcn@latest add sheet
+npx shadcn@latest add card

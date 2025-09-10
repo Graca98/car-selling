@@ -11,19 +11,23 @@ import { Button } from "../Button"
 
 const links = {
   forSale: {
-    name: "Na prodej",
+    name: "Nabídka vozů",
     link: "/",
   },
   sold: {
-    name: "Prodaná",
+    name: "Prodané",
     link: "/sold",
+  },
+  about: {
+    name: "O nás",
+    link: "/about",
   },
   contact: {
     name: "Kontakt",
     link: "/contact",
   },
   order: {
-    name: "Objednat dovoz",
+    name: "Auto na přání",
     link: "/order-car",
   },
 }
@@ -46,7 +50,7 @@ export function NavBar() {
           {/* <Link href={siteConfig.baseLinks.home} aria-label="Home"> */}
           <Link href="/" aria-label="Home">
             {/* <span className="sr-only">Solar Tech Logo</span> */}
-            <span className="text-gray-900">Sofie Logo</span>
+            <span className="text-gray-900 text-4xl">CarVerzo</span>
             {/* <SolarLogo className="w-22" /> */}
           </Link>
           <nav className="hidden sm:block md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:transform">
@@ -56,6 +60,9 @@ export function NavBar() {
             </Link>
             <Link className="px-2 py-1 text-gray-900" href={links.sold.link}>
               {links.sold.name}
+            </Link>
+            <Link className="px-2 py-1 text-gray-900" href={links.about.link}>
+              {links.about.name}
             </Link>
             <Link className="px-2 py-1 text-gray-900" href={links.contact.link}>
               {links.contact.name}
@@ -99,6 +106,9 @@ export function NavBar() {
           </li>
           <li onClick={() => setOpen(false)}>
             <Link href={links.sold.link}>{links.sold.name}</Link>
+          </li>
+          <li onClick={() => setOpen(false)}>
+            <Link href={links.about.link}>{links.about.name}</Link>
           </li>
           <li onClick={() => setOpen(false)}>
             <Link href={links.contact.link}>{links.contact.name}</Link>
