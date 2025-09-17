@@ -5,27 +5,28 @@ export default function Page() {
         <div className="max-w-4xl mx-auto px-6 py-12">
           {/* Kontakty Section */}
           <section className="mb-8">
-            <h1 className="text-4xl font-semibold text-gray-800">Kontakt</h1>
+            <h1 className="text-4xl font-semibold text-gray-800 mb-8">
+              Kontakt
+            </h1>
 
             {/* Kontaktní informace (telefon, e-mail, Instagram) na jednom řádku */}
-            <div className="flex flex-col md:flex-row justify-between mt-6 space-y-6 md:space-y-0">
-              <div className="w-full text-lg text-gray-700 flex justify-start whitespace-nowrap">
-                <p>
-                  <span className="font-semibold">Tel. číslo:</span> 123 456 789
-                </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+              {/* Telefonní číslo */}
+              <div className="flex flex-col items-start">
+                <h2 className="text-lg font-medium">Telefonní číslo</h2>
+                <p className="text-lg whitespace-nowrap">123 456 000</p>
               </div>
 
-              <div className="w-full md:w-1/3 text-lg text-gray-700 flex justify-start md:justify-center whitespace-nowrap">
-                <p>
-                  <span className="font-semibold">E-mail:</span>{" "}
-                  corveto@gmail.com
-                </p>
+              {/* E-mail */}
+              <div className="flex flex-col items-start sm:justify-center sm:items-center">
+                <h2 className="text-lg font-medium">E-mail</h2>
+                <p className="text-lg whitespace-nowrap">contact@company.com</p>
               </div>
 
-              <div className="w-full text-lg text-gray-700 flex justify-start md:justify-end whitespace-nowrap">
-                <p>
-                  <span className="font-semibold">Instagram:</span> @Corveto20
-                </p>
+              {/* Instagram */}
+              <div className="flex flex-col items-start sm:items-end">
+                <h2 className="text-lg font-medium">Instagram</h2>
+                <p className="text-lg whitespace-nowrap">@company</p>
               </div>
             </div>
 
@@ -92,3 +93,67 @@ export default function Page() {
     </main>
   );
 }
+
+// export default function Page() {
+//   return (
+//     <main className="min-h-dvh bg-background max-w-6xl mx-auto px-0 mt-10">
+//       <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+//       {/* Kontakt Section */}
+//       <div className="text-center mb-8">
+//         <h1 className="text-4xl font-semibold">Kontakt</h1>
+//       </div>
+
+//       {/* Contact Info */}
+//       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+//         <div>
+//           <h2 className="text-lg font-medium">Telefonní číslo</h2>
+//           <p className="text-lg">123 456 000</p>
+//         </div>
+//         <div>
+//           <h2 className="text-lg font-medium">E-mail</h2>
+//           <p className="text-lg">contact@company.com</p>
+//         </div>
+//         <div>
+//           <h2 className="text-lg font-medium">Instagram</h2>
+//           <p className="text-lg">@company</p>
+//         </div>
+//       </div>
+
+//       {/* Working Hours */}
+//       <div className="mb-8">
+//         <h2 className="text-xl font-medium mb-2">Pracovní doba</h2>
+//         <p className="text-lg">Pondělí - Pátek: 9:00 - 18:00</p>
+//         <p className="text-lg">Víkendy: Flexibilní</p>
+//       </div>
+
+//       {/* Map Section */}
+//       <div className="mb-8">
+//         <h2 className="text-xl font-medium mb-2">Kde nás najdete?</h2>
+//         <div className="relative border-2 border-gray-300 p-6 rounded-md">
+//           <h3 className="text-xl font-semibold">Mapa</h3>
+//           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+//             {/* <FaMapPin size={50} color="gray" /> */}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Company Info */}
+//       <div className="mb-8">
+//         <h2 className="text-xl font-medium mb-2">Firma</h2>
+//         <p className="text-lg">Corvento s.r.o.</p>
+//         <div className="grid grid-cols-2 gap-6 mt-4">
+//           <div>
+//             <h3 className="text-lg">IČO</h3>
+//             <p className="text-lg">123 456 789</p>
+//           </div>
+//           <div>
+//             <h3 className="text-lg">DIČ</h3>
+//             <p className="text-lg">CZ123456789</p>
+//           </div>
+//         </div>
+//         <p className="text-lg mt-4">Sídlo: Chytné Město</p>
+//       </div>
+//     </div>
+//     </main>
+//   );
+// }
